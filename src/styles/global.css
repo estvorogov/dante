@@ -120,32 +120,58 @@ a {
 
 .hero {
   position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-  gap: 42px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+  gap: clamp(28px, 5vw, 70px);
   align-items: center;
-  padding: 74px clamp(18px, 5vw, 72px) 64px;
+  min-height: calc(100vh - 72px);
+  padding: 78px clamp(18px, 5vw, 72px) 70px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 54%, rgba(255, 127, 34, 0.34) 0, transparent 34%),
+    radial-gradient(circle at 72% 18%, rgba(255, 211, 106, 0.2) 0, transparent 24%),
+    radial-gradient(circle at 18% 78%, rgba(167, 25, 23, 0.42) 0, transparent 35%),
+    linear-gradient(122deg, #33070f 0%, #1d0710 43%, #090407 70%, #2b0905 100%);
+  border-bottom: 1px solid rgba(255, 211, 106, 0.18);
+  box-shadow: inset 0 -90px 130px rgba(8, 4, 7, 0.58);
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: '';
+  background:
+    linear-gradient(90deg, rgba(10, 3, 6, 0.32), transparent 58%),
+    radial-gradient(ellipse at 50% 105%, rgba(255, 91, 33, 0.44) 0, transparent 52%);
 }
 
 .hero::after {
   position: absolute;
-  right: clamp(22px, 7vw, 120px);
-  bottom: 28px;
+  right: clamp(-80px, -5vw, -28px);
+  bottom: -110px;
   z-index: -1;
-  width: min(540px, 80vw);
-  height: min(540px, 80vw);
+  width: min(680px, 88vw);
+  height: min(680px, 88vw);
   content: '';
   background:
-    radial-gradient(circle, rgba(255, 211, 106, 0.2) 0 12%, transparent 13% 100%),
+    radial-gradient(circle, rgba(255, 211, 106, 0.18) 0 10%, transparent 11% 100%),
     conic-gradient(
-      from 20deg,
-      rgba(255, 91, 33, 0.24),
+      from 18deg,
+      rgba(255, 91, 33, 0.42),
+      rgba(255, 178, 63, 0.2),
       transparent,
-      rgba(255, 211, 106, 0.18),
-      transparent
+      rgba(167, 25, 23, 0.36),
+      rgba(255, 91, 33, 0.42)
     );
   border-radius: 48% 52% 46% 54%;
-  filter: blur(10px);
+  filter: blur(18px);
+  opacity: 0.95;
+}
+
+.heroText {
+  max-width: 720px;
 }
 
 .eyebrow {
@@ -193,11 +219,33 @@ h3 {
   line-height: 1.6;
 }
 
+.heroBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 30px;
+}
+
+.heroBadges span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 9px 13px;
+  color: #fff4d1;
+  font-weight: 900;
+  background: linear-gradient(135deg, rgba(255, 211, 106, 0.16), rgba(255, 91, 33, 0.13));
+  border: 1px solid rgba(255, 211, 106, 0.34);
+  border-radius: 999px;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.2),
+    inset 0 0 18px rgba(255, 91, 33, 0.12);
+}
+
 .ctaRow {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin: 30px 0;
+  margin: 0 0 30px;
 }
 
 .primaryBtn,
@@ -273,22 +321,40 @@ footer,
 }
 
 .phoneMock {
-  width: 420px;
-  max-width: 100%;
-  border: 2px solid rgba(255, 211, 106, 0.4);
-  border-radius: 34px;
+  position: relative;
+  justify-self: end;
+  width: min(100%, 620px);
   overflow: hidden;
-  background: #1b0f18;
+  background:
+    linear-gradient(180deg, rgba(255, 211, 106, 0.16), rgba(255, 91, 33, 0.12)), #1b0f18;
+  border: 2px solid rgba(255, 211, 106, 0.48);
+  border-radius: 42px;
   box-shadow:
-    0 34px 90px rgba(0, 0, 0, 0.52),
-    0 0 54px rgba(255, 91, 33, 0.28);
+    0 38px 100px rgba(0, 0, 0, 0.58),
+    0 0 90px rgba(255, 91, 33, 0.46),
+    0 0 34px rgba(255, 178, 63, 0.2),
+    inset 0 0 30px rgba(255, 211, 106, 0.12);
+  transform: rotate(1deg);
+}
+
+.phoneMock::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.24), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(255, 91, 33, 0.22), transparent 45%);
+  mix-blend-mode: screen;
 }
 
 .phoneMock img {
   display: block;
   width: 100%;
+  min-height: 520px;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .section {
@@ -530,6 +596,20 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .hero {
+    min-height: auto;
+  }
+
+  .phoneMock {
+    justify-self: start;
+    width: min(100%, 560px);
+    transform: none;
+  }
+
+  .phoneMock img {
+    min-height: 0;
+  }
+
   .grid,
   .roadmap,
   .hellCirclesGrid {
@@ -555,6 +635,15 @@ footer {
 
   .hero {
     padding-top: 48px;
+  }
+
+  .heroBadges {
+    margin-bottom: 24px;
+  }
+
+  .heroBadges span {
+    width: 100%;
+    justify-content: center;
   }
 
   h1 {
