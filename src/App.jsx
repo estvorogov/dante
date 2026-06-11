@@ -1,4 +1,3 @@
-import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { Sword, Shield, Feather, Star, Store, ChevronRight } from 'lucide-react'
 import { gameContent } from './data/gameContent'
@@ -90,14 +89,20 @@ function Gallery() {
         <p className="eyebrow">Art direction</p>
         <h2>Милый герой, опасный мир</h2>
         <p>
-          Сейчас используются заглушки из твоих референсов. Позже Codex сможет
-          заменить их на реальные скриншоты, видео или WebP-ассеты.
+          Сейчас используются заглушки из твоих референсов. Позже Codex сможет заменить их
+          на реальные скриншоты, видео или WebP-ассеты.
         </p>
       </div>
 
       <div className="shots">
-        <img src={`${import.meta.env.BASE_URL}preview-soft.jpeg`} alt="Светлый стиль игры" />
-        <img src={`${import.meta.env.BASE_URL}preview-dark.jpeg`} alt="Тёмный стиль игры" />
+        <img
+          src={`${import.meta.env.BASE_URL}preview-soft.jpeg`}
+          alt="Светлый стиль игры"
+        />
+        <img
+          src={`${import.meta.env.BASE_URL}preview-dark.jpeg`}
+          alt="Тёмный стиль игры"
+        />
       </div>
     </section>
   )
@@ -124,8 +129,8 @@ function Subscribe() {
       <Store size={34} />
       <h2>Скоро в App Store и Google Play</h2>
       <p>
-        Форма пока локальная. Когда будет домен — подключим аналитику, сбор
-        email и кнопки магазинов.
+        Форма пока локальная. Когда будет домен — подключим аналитику, сбор email и кнопки
+        магазинов.
       </p>
 
       <form>
