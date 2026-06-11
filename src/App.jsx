@@ -50,7 +50,7 @@ function Hero() {
 
       <div className="phoneMock">
         <img
-          src="/preview-dark.jpeg"
+          src={`${import.meta.env.BASE_URL}preview-dark.jpeg`}
           alt="Скриншоты игры с ангельским котом и демонами"
         />
       </div>
@@ -96,8 +96,8 @@ function Gallery() {
       </div>
 
       <div className="shots">
-        <img src="/preview-soft.jpeg" alt="Светлый стиль игры" />
-        <img src="/preview-dark.jpeg" alt="Тёмный стиль игры" />
+        <img src={`${import.meta.env.BASE_URL}preview-soft.jpeg`} alt="Светлый стиль игры" />
+        <img src={`${import.meta.env.BASE_URL}preview-dark.jpeg`} alt="Тёмный стиль игры" />
       </div>
     </section>
   )
